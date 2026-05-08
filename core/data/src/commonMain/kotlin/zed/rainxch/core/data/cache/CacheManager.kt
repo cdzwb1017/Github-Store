@@ -59,24 +59,39 @@ class CacheManager(
                 return try {
                     json.decodeFromString(serializer<T>(), jsonData)
                 } catch (_: Exception) {
-                    memoryCacheMutex.withLock { memoryCache.remove(key) }
+                    // Guarded eviction: only remove if no concurrent
+                    // `put` has replaced our snapshot. Without the
+                    // equality check, a fresh value written between
+                    // the snapshot read and this decode failure would
+                    // be wrongly evicted.
+                    memoryCacheMutex.withLock {
+                        if (memoryCache[key] == cached) memoryCache.remove(key)
+                    }
                     null
                 }
             } else {
-                memoryCacheMutex.withLock { memoryCache.remove(key) }
+                memoryCacheMutex.withLock {
+                    if (memoryCache[key] == cached) memoryCache.remove(key)
+                }
             }
         }
 
         val entry = cacheDao.getValid(key, currentTime) ?: return null
+        val snapshot = entry.expiresAt to entry.jsonData
         memoryCacheMutex.withLock {
-            memoryCache[key] = entry.expiresAt to entry.jsonData
+            memoryCache[key] = snapshot
         }
 
         return try {
             json.decodeFromString(serializer<T>(), entry.jsonData)
         } catch (_: Exception) {
-            cacheDao.delete(key)
-            memoryCacheMutex.withLock { memoryCache.remove(key) }
+            // Same race rationale as the in-memory branch — use the
+            // row's cachedAt as a version stamp so a fresh `put` that
+            // raced in between getValid and now is preserved.
+            cacheDao.deleteIfMatches(key, entry.cachedAt)
+            memoryCacheMutex.withLock {
+                if (memoryCache[key] == snapshot) memoryCache.remove(key)
+            }
             null
         }
     }
