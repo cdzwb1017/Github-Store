@@ -41,6 +41,17 @@ fun main(args: Array<String>) {
     // raised by the macOS accessibility bridge (see `A11yCrashGuard`).
     A11yCrashGuard.install()
 
+    // Skiko default backend on Linux is OpenGL, but on hybrid-GPU
+    // setups (e.g. AMD iGPU + Nvidia dGPU on Bazzite) the proprietary
+    // Nvidia driver path can SEGV the JVM before any Java exception
+    // handler runs (see issue #546). Honour an explicit
+    // `SKIKO_RENDER_API` env var if the user set one (escape hatch
+    // for reporters who can rescue the install with `SOFTWARE`), and
+    // otherwise leave Skiko to its default — pinning a specific API
+    // unconditionally would regress users who DO have a working
+    // accelerated path.
+    selectLinuxRenderBackendIfRequested()
+
     // Reduce JVM DNS cache TTL so network changes (VPN on/off) are picked up quickly.
     // Default JVM caches positive lookups for 30s and negative lookups forever,
     // which breaks connectivity when a VPN changes DNS/routing mid-session.
@@ -117,4 +128,25 @@ fun main(args: Array<String>) {
             App(deepLinkUri = deepLinkUri)
         }
     }
+}
+
+/**
+ * Honour `SKIKO_RENDER_API` (env) or `-Dskiko.renderApi` (system
+ * property) on Linux so users hitting the Nvidia hybrid-GPU SEGV
+ * (issue #546) can rescue the install via:
+ *
+ *     SKIKO_RENDER_API=SOFTWARE ./GitHub-Store-x86_64.AppImage
+ *
+ * Skiko reads the system property internally; we copy the env var
+ * into the property when present so AppImage launchers don't need
+ * to construct `-D` flags. Other platforms are skipped — Mac/Win
+ * are unaffected by this class of bug.
+ */
+private fun selectLinuxRenderBackendIfRequested() {
+    val osName = System.getProperty("os.name", "").lowercase()
+    if (!osName.contains("linux")) return
+    if (System.getProperty("skiko.renderApi") != null) return
+    val fromEnv = System.getenv("SKIKO_RENDER_API")?.trim().orEmpty()
+    if (fromEnv.isEmpty()) return
+    System.setProperty("skiko.renderApi", fromEnv)
 }
