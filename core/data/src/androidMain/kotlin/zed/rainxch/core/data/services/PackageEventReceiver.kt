@@ -184,10 +184,23 @@ class PackageEventReceiver() :
                             versionCodeMatchesTarget ||
                                 (expectedVersionCode <= 0L && versionNameChanged)
 
+                        // Source-of-truth for the tag the user just
+                        // installed: `pendingInstallVersion` carries the
+                        // exact release tag the orchestrator parked the
+                        // file under (set during download flow). It's
+                        // honest about explicit older-version installs;
+                        // `app.latestVersion` is GHS's cached idea of
+                        // "what GitHub says is latest" and would show
+                        // the wrong tag if the user picked an older
+                        // release from the version picker.
+                        val installedTag =
+                            app.pendingInstallVersion
+                                ?: app.latestVersion
+                                ?: systemInfo.versionName
                         if (wasActuallyUpdated) {
                             repo.updateAppVersion(
                                 packageName = packageName,
-                                newTag = app.latestVersion ?: systemInfo.versionName,
+                                newTag = installedTag,
                                 newAssetName = app.latestAssetName ?: "",
                                 newAssetUrl = app.latestAssetUrl ?: "",
                                 newVersionName = systemInfo.versionName,
@@ -195,18 +208,20 @@ class PackageEventReceiver() :
                                 signingFingerprint = app.signingFingerprint,
                             )
                             repo.updatePendingStatus(packageName, false)
-                            Logger.i { "Update confirmed via broadcast: $packageName (v${systemInfo.versionName})" }
+                            Logger.i { "Update confirmed via broadcast: $packageName (v${systemInfo.versionName}, tag=$installedTag)" }
                         } else {
                             // Even on the "didn't reach target" branch the
                             // installedVersion tag must move forward when the
                             // user accepted some install — leaving it pinned
                             // to the old tag makes the apps row report the
-                            // pre-install version forever.
+                            // pre-install version forever. Use the parked
+                            // tag so an explicit older-version install is
+                            // honoured (issue: details + apps screens were
+                            // showing latest when user picked older).
                             repo.updateApp(
                                 app.copy(
                                     isPendingInstall = false,
-                                    installedVersion =
-                                        app.latestVersion ?: systemInfo.versionName,
+                                    installedVersion = installedTag,
                                     installedVersionName = systemInfo.versionName,
                                     installedVersionCode = systemInfo.versionCode,
                                     isUpdateAvailable =
