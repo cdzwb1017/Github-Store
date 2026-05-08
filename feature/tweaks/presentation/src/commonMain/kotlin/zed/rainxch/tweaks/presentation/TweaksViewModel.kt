@@ -20,6 +20,7 @@ import zed.rainxch.core.domain.model.ProxyConfig
 import zed.rainxch.core.domain.model.ProxyScope
 import zed.rainxch.core.domain.model.TranslationProvider
 import zed.rainxch.core.domain.network.ProxyTestOutcome
+import zed.rainxch.core.domain.logging.GitHubStoreLogger
 import zed.rainxch.core.domain.network.ProxyTester
 import zed.rainxch.core.domain.repository.DeviceIdentityRepository
 import zed.rainxch.core.domain.repository.ProxyRepository
@@ -28,7 +29,6 @@ import zed.rainxch.core.domain.repository.TelemetryRepository
 import zed.rainxch.core.domain.repository.TweaksRepository
 import zed.rainxch.core.domain.system.InstallerStatusProvider
 import zed.rainxch.core.domain.system.UpdateScheduleManager
-import zed.rainxch.core.domain.utils.BrowserHelper
 import zed.rainxch.tweaks.presentation.model.ProxyScopeFormState
 import zed.rainxch.githubstore.core.presentation.res.Res
 import zed.rainxch.githubstore.core.presentation.res.failed_to_save_proxy_settings
@@ -44,7 +44,6 @@ import zed.rainxch.profile.domain.repository.ProfileRepository
 import zed.rainxch.tweaks.presentation.model.ProxyType
 
 class TweaksViewModel(
-    private val browserHelper: BrowserHelper,
     private val tweaksRepository: TweaksRepository,
     private val profileRepository: ProfileRepository,
     private val installerStatusProvider: InstallerStatusProvider,
@@ -54,6 +53,7 @@ class TweaksViewModel(
     private val seenReposRepository: SeenReposRepository,
     private val deviceIdentityRepository: DeviceIdentityRepository,
     private val telemetryRepository: TelemetryRepository,
+    private val logger: GitHubStoreLogger,
 ) : ViewModel() {
     private var hasLoadedInitialData = false
     private var cacheSizeJob: Job? = null
@@ -315,7 +315,7 @@ class TweaksViewModel(
                     )
                 }
             }.onFailure { error ->
-                println("TweaksViewModel: failed to persist installer attribution: ${error.message}")
+                logger.error("TweaksViewModel: failed to persist installer attribution", error)
                 _state.update {
                     it.copy(installerAttributionCustomError = "write_failed")
                 }
@@ -327,7 +327,7 @@ class TweaksViewModel(
         viewModelScope.launch {
             tweaksRepository.getInstallerAttribution()
                 .catch { e ->
-                    println("TweaksViewModel: installer attribution flow error: ${e.message}")
+                    logger.error("TweaksViewModel: installer attribution flow error", e)
                 }
                 .collect { attribution ->
                     _state.update { current ->
@@ -678,7 +678,7 @@ class TweaksViewModel(
                         }.onSuccess {
                             _state.update { it.copy(installerAttributionCustomError = null) }
                         }.onFailure { error ->
-                            println("TweaksViewModel: failed to persist installer attribution: ${error.message}")
+                            logger.error("TweaksViewModel: failed to persist installer attribution", error)
                             _state.update { it.copy(installerAttributionCustomError = "write_failed") }
                         }
                     }
@@ -766,12 +766,6 @@ class TweaksViewModel(
 
             TweaksAction.OnClearDownloadsDismiss -> {
                 _state.update { it.copy(isClearDownloadsDialogVisible = false) }
-            }
-
-            TweaksAction.OnHelpClick -> {
-                browserHelper.openUrl(
-                    url = "https://github.com/OpenHub-Store/GitHub-Store/issues",
-                )
             }
 
             TweaksAction.OnMirrorPickerClick -> {

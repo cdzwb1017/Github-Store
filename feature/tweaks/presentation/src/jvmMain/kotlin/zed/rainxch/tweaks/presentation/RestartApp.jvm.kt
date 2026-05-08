@@ -1,5 +1,6 @@
 package zed.rainxch.tweaks.presentation
 
+import co.touchlab.kermit.Logger
 import kotlin.system.exitProcess
 
 /**
@@ -29,18 +30,17 @@ actual fun restartAppAfterLanguageChange() {
                 .inheritIO()
                 .start()
         } else {
-            System.err.println(
-                "restartAppAfterLanguageChange: ProcessHandle has no command; exiting without relaunch",
-            )
+            Logger.w {
+                "restartAppAfterLanguageChange: ProcessHandle has no command; exiting without relaunch"
+            }
         }
     } catch (t: Throwable) {
         // Swallow: we'd rather exit cleanly than leave the user in a
         // limbo where the app is stuck with the old locale because
-        // the relaunch errored out. stderr so packaging regressions
-        // are still noticeable in logs without adding a logging dep.
-        System.err.println(
-            "restartAppAfterLanguageChange: relaunch failed (${t.javaClass.simpleName}: ${t.message}), falling back to plain exit",
-        )
+        // the relaunch errored out.
+        Logger.w(t) {
+            "restartAppAfterLanguageChange: relaunch failed, falling back to plain exit"
+        }
     }
     exitProcess(0)
 }
