@@ -2402,6 +2402,10 @@ class DetailsViewModel(
                     }
                 launch { seenReposRepository.markAsSeen(repo) }
 
+                // Launch both checks in parallel before awaiting either —
+                // previously `isFavoriteDeferred.await()` ran before
+                // `isStarredDeferred` was even started, serialising two
+                // independent reads on the Details screen cold path.
                 val isFavoriteDeferred =
                     async {
                         try {
@@ -2414,7 +2418,6 @@ class DetailsViewModel(
                             false
                         }
                     }
-                val isFavorite = isFavoriteDeferred.await()
                 val isStarredDeferred =
                     async {
                         try {
@@ -2427,6 +2430,7 @@ class DetailsViewModel(
                             false
                         }
                     }
+                val isFavorite = isFavoriteDeferred.await()
                 val isStarred = isStarredDeferred.await()
 
                 val owner = repo.owner.login
