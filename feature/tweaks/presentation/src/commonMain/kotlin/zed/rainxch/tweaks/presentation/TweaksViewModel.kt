@@ -485,6 +485,10 @@ class TweaksViewModel(
                 // Handled in composable
             }
 
+            TweaksAction.OnSkippedUpdatesClick -> {
+                // Handled in composable (navigates to the skipped-updates screen).
+            }
+
             is TweaksAction.OnThemeColorSelected -> {
                 viewModelScope.launch {
                     tweaksRepository.setThemeColor(action.themeColor)

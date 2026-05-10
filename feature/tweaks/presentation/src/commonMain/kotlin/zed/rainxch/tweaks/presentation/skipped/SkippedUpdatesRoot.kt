@@ -43,6 +43,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import zed.rainxch.core.presentation.utils.ObserveAsEvents
 import zed.rainxch.githubstore.core.presentation.res.Res
+import zed.rainxch.githubstore.core.presentation.res.navigate_back
 import zed.rainxch.githubstore.core.presentation.res.skipped_updates_empty_description
 import zed.rainxch.githubstore.core.presentation.res.skipped_updates_empty_title
 import zed.rainxch.githubstore.core.presentation.res.skipped_updates_installed_label
