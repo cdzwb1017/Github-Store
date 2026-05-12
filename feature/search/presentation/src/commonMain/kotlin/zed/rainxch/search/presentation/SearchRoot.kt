@@ -585,6 +585,35 @@ fun SearchScreen(
                     }
                 }
 
+                // Auto-paginate is fetching the next page in the background
+                // because every loaded repo is filtered out. Without an
+                // explicit indicator the content area is blank: the top-level
+                // spinner only renders while repositories.isEmpty(), and the
+                // in-grid load-more spinner is unreachable because the grid
+                // itself only renders when visibleRepos is non-empty.
+                if (state.repositories.isNotEmpty() &&
+                    state.visibleRepos.isEmpty() &&
+                    state.isHideSeenEnabled &&
+                    state.hasMorePages
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            CircularProgressIndicator()
+
+                            Spacer(Modifier.height(8.dp))
+
+                            Text(
+                                text = stringResource(Res.string.searching_for_unseen_repos),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.outline,
+                            )
+                        }
+                    }
+                }
+
                 // All currently loaded API hits filtered out by the global
                 // "Hide seen" tweak AND no further pages remain — results
                 // counter still shows the raw total, so without this banner

@@ -63,6 +63,7 @@
     <string name="results_found">找到 %1$d 个结果</string>
     <string name="search_results_hidden_by_seen_filter">所有结果被\'隐藏已查看\'过滤器隐藏</string>
     <string name="show_all_results">禁用\'隐藏已查看\'过滤器</string>
+    <string name="searching_for_unseen_repos">正在搜索未查看的仓库…</string>
 
     <string name="retry">重试</string>
 

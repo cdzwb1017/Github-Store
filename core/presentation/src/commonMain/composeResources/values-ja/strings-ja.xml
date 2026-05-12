@@ -61,6 +61,7 @@
     <string name="results_found">%1$d 件の結果</string>
     <string name="search_results_hidden_by_seen_filter">「既読を非表示」フィルターですべての結果が非表示です</string>
     <string name="show_all_results">「既読を非表示」フィルターを無効化</string>
+    <string name="searching_for_unseen_repos">未読のリポジトリを検索中…</string>
 
     <string name="retry">再試行</string>
 

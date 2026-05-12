@@ -76,6 +76,7 @@
     <string name="results_found">%1$d परिणाम मिले</string>
     <string name="search_results_hidden_by_seen_filter">\'देखे गए छिपाएं\' फ़िल्टर ने सभी परिणाम छुपा दिए</string>
     <string name="show_all_results">\'देखे गए छिपाएं\' फ़िल्टर बंद करें</string>
+    <string name="searching_for_unseen_repos">अनदेखी रिपॉजिटरीज़ खोजी जा रही हैं…</string>
 
 
     <!-- Sorting -->

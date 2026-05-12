@@ -76,6 +76,7 @@
     <string name="results_found">تم العثور على %1$d نتيجة</string>
     <string name="search_results_hidden_by_seen_filter">جميع النتائج مخفية بسبب فلتر \'إخفاء المُشاهَد\'</string>
     <string name="show_all_results">تعطيل فلتر \'إخفاء المُشاهَد\'</string>
+    <string name="searching_for_unseen_repos">البحث عن مستودعات لم تتم مشاهدتها…</string>
 
 
     <!-- Sorting -->

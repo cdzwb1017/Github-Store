@@ -75,6 +75,7 @@
     <string name="results_found">%1$d sonuç bulundu</string>
     <string name="search_results_hidden_by_seen_filter">Tüm sonuçlar \'Görüleni gizle\' filtresiyle gizlendi</string>
     <string name="show_all_results">\'Görüleni gizle\' filtresini devre dışı bırak</string>
+    <string name="searching_for_unseen_repos">Görülmemiş depolar aranıyor…</string>
 
 
     <!-- Sorting -->

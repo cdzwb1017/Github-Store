@@ -63,6 +63,7 @@
     <string name="results_found">Найдено результатов: %1$d</string>
     <string name="search_results_hidden_by_seen_filter">Все результаты скрыты фильтром \'Скрыть просмотренные\'</string>
     <string name="show_all_results">Отключить фильтр \'Скрыть просмотренные\'</string>
+    <string name="searching_for_unseen_repos">Поиск непросмотренных репозиториев…</string>
 
     <string name="sort_by">Сортировать по</string>
     <string name="close">Закрыть</string>
