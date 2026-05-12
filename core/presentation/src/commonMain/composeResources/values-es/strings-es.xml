@@ -731,6 +731,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">Incluir betas</string>
     <string name="channel_chip_stable_only">Solo estable</string>
+    <string name="channel_chip_coachmark_title">Elige tu canal de lanzamiento</string>
+    <string name="channel_chip_coachmark_body">Toca para alternar entre lanzamientos estables y compilaciones beta de esta app.</string>
+    <string name="channel_chip_coachmark_dismiss">Entendido</string>
     <string name="channel_toggle_cd">Alternar versiones beta de esta aplicación</string>
     <string name="action_switch_to_stable">Cambiar a %1$s estable</string>
     <string name="stalled_project_warning_months">Sin versión estable en %1$d meses</string>

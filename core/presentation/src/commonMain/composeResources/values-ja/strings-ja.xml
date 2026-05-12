@@ -731,6 +731,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">ベータを含む</string>
     <string name="channel_chip_stable_only">安定版のみ</string>
+    <string name="channel_chip_coachmark_title">リリースチャンネルを選択</string>
+    <string name="channel_chip_coachmark_body">このアプリの安定版とベータビルドを切り替えるにはタップ。</string>
+    <string name="channel_chip_coachmark_dismiss">了解</string>
     <string name="channel_toggle_cd">このアプリのベータリリースを切り替え</string>
     <string name="action_switch_to_stable">%1$s の安定版に切り替え</string>
     <string name="stalled_project_warning_months">%1$d か月間、安定版リリースなし</string>

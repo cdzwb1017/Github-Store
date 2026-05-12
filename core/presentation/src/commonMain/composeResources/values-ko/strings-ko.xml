@@ -766,6 +766,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">베타 포함</string>
     <string name="channel_chip_stable_only">안정 버전만</string>
+    <string name="channel_chip_coachmark_title">릴리스 채널 선택</string>
+    <string name="channel_chip_coachmark_body">이 앱의 안정 릴리스와 베타 빌드를 전환하려면 탭하세요.</string>
+    <string name="channel_chip_coachmark_dismiss">확인</string>
     <string name="channel_toggle_cd">이 앱의 베타 릴리스 전환</string>
     <string name="action_switch_to_stable">%1$s 안정 버전으로 전환</string>
     <string name="stalled_project_warning_months">%1$d개월간 안정 릴리스 없음</string>

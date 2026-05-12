@@ -768,6 +768,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">Beta sürümleri dahil et</string>
     <string name="channel_chip_stable_only">Yalnızca kararlı</string>
+    <string name="channel_chip_coachmark_title">Sürüm kanalını seçin</string>
+    <string name="channel_chip_coachmark_body">Bu uygulamanın kararlı sürümleri ile beta sürümleri arasında geçiş yapmak için dokunun.</string>
+    <string name="channel_chip_coachmark_dismiss">Anladım</string>
     <string name="channel_toggle_cd">Bu uygulama için beta sürümlerini aç/kapat</string>
     <string name="action_switch_to_stable">%1$s kararlı sürümüne geç</string>
     <string name="stalled_project_warning_months">%1$d aydır kararlı sürüm yok</string>

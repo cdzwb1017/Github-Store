@@ -767,6 +767,9 @@
     <!-- Pre-release channel UX -->
     <string name="channel_chip_include_betas">বেটা অন্তর্ভুক্ত করুন</string>
     <string name="channel_chip_stable_only">শুধুমাত্র স্থিতিশীল</string>
+    <string name="channel_chip_coachmark_title">আপনার রিলিজ চ্যানেল বাছুন</string>
+    <string name="channel_chip_coachmark_body">এই অ্যাপের স্থিতিশীল রিলিজ এবং বেটা বিল্ডের মধ্যে স্যুইচ করতে আলতো চাপুন।</string>
+    <string name="channel_chip_coachmark_dismiss">বুঝেছি</string>
     <string name="channel_toggle_cd">এই অ্যাপের জন্য বেটা রিলিজ টগল করুন</string>
     <string name="action_switch_to_stable">স্থিতিশীল %1$s-এ যান</string>
     <string name="stalled_project_warning_months">%1$d মাসে কোনো স্থিতিশীল রিলিজ নেই</string>

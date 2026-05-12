@@ -481,6 +481,9 @@
     <!-- Pre-release channel UX (Details screen) -->
     <string name="channel_chip_include_betas">Include betas</string>
     <string name="channel_chip_stable_only">Stable only</string>
+    <string name="channel_chip_coachmark_title">Choose your release channel</string>
+    <string name="channel_chip_coachmark_body">Tap to switch between stable releases and beta builds for this app.</string>
+    <string name="channel_chip_coachmark_dismiss">Got it</string>
     <string name="channel_toggle_cd">Toggle beta releases for this app</string>
     <string name="action_switch_to_stable">Switch to stable %1$s</string>
     <string name="stalled_project_warning_months">No stable release in %1$d months</string>

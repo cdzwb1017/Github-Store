@@ -739,6 +739,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">Uwzględnij wersje beta</string>
     <string name="channel_chip_stable_only">Tylko stabilne</string>
+    <string name="channel_chip_coachmark_title">Wybierz kanał wydań</string>
+    <string name="channel_chip_coachmark_body">Dotknij, aby przełączać między stabilnymi wydaniami a wersjami beta tej aplikacji.</string>
+    <string name="channel_chip_coachmark_dismiss">OK</string>
     <string name="channel_toggle_cd">Przełącz wydania beta dla tej aplikacji</string>
     <string name="action_switch_to_stable">Przejdź do stabilnej wersji %1$s</string>
     <string name="stalled_project_warning_months">Brak stabilnego wydania od %1$d miesięcy</string>

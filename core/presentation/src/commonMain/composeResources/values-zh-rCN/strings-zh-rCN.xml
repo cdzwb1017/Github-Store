@@ -733,6 +733,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">包含测试版</string>
     <string name="channel_chip_stable_only">仅稳定版</string>
+    <string name="channel_chip_coachmark_title">选择发布渠道</string>
+    <string name="channel_chip_coachmark_body">点按以在此应用的稳定版和测试版之间切换。</string>
+    <string name="channel_chip_coachmark_dismiss">知道了</string>
     <string name="channel_toggle_cd">切换此应用的测试版发布</string>
     <string name="action_switch_to_stable">切换到 %1$s 稳定版</string>
     <string name="stalled_project_warning_months">%1$d 个月内无稳定版发布</string>

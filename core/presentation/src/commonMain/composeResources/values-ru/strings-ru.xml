@@ -739,6 +739,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">Включить бета-версии</string>
     <string name="channel_chip_stable_only">Только стабильные</string>
+    <string name="channel_chip_coachmark_title">Выберите канал релизов</string>
+    <string name="channel_chip_coachmark_body">Нажмите, чтобы переключаться между стабильными релизами и бета-сборками этого приложения.</string>
+    <string name="channel_chip_coachmark_dismiss">Понятно</string>
     <string name="channel_toggle_cd">Переключить бета-релизы для этого приложения</string>
     <string name="action_switch_to_stable">Перейти на стабильную %1$s</string>
     <string name="stalled_project_warning_months">Нет стабильного релиза уже %1$d месяцев</string>
