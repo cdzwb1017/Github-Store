@@ -60,11 +60,17 @@ class HomeViewModel(
     private var topicSupplementJob: Job? = null
     private var nextPageIndex = 1
 
+    // Cached so each repo mapping doesn't re-hit ProfileRepository (which
+    // walks a suspend cache + DataStore on every call). Refreshed by the
+    // observer below — login/logout flips badges without restarting the VM.
+    @Volatile private var currentUserLogin: String? = null
+
     private val _state = MutableStateFlow(HomeState())
     val state =
         _state
             .onStart {
                 if (!hasLoadedInitialData) {
+                    observeCurrentUser()
                     syncSystemState()
 
                     loadPlatform()
@@ -368,7 +374,7 @@ class HomeViewModel(
                 .associateBy { it.repoId }
 
         val seenIds = _state.value.seenRepoIds
-        val currentLogin = profileRepository.getUser().first()?.username
+        val currentLogin = currentUserLogin
 
         return repos.map { repo ->
             val apps = installedAppsMap[repo.id].orEmpty()
@@ -580,6 +586,31 @@ class HomeViewModel(
         viewModelScope.launch {
             tweaksRepository.getHideSeenEnabled().collect { enabled ->
                 _state.update { it.copy(isHideSeenEnabled = enabled) }
+            }
+        }
+    }
+
+    private fun observeCurrentUser() {
+        viewModelScope.launch {
+            profileRepository.getUser().collect { user ->
+                currentUserLogin = user?.username
+                // Re-stamp `isCurrentUserOwner` on already-loaded repos so
+                // logging in (or switching accounts) immediately flips
+                // badges without forcing a full reload.
+                val login = user?.username
+                _state.update { current ->
+                    current.copy(
+                        repos =
+                            current.repos
+                                .map { repo ->
+                                    repo.copy(
+                                        isCurrentUserOwner =
+                                            login != null &&
+                                                repo.repository.owner.login.equals(login, ignoreCase = true),
+                                    )
+                                }.toImmutableList(),
+                    )
+                }
             }
         }
     }

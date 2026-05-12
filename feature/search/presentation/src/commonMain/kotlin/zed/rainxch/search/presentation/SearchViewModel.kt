@@ -72,6 +72,11 @@ class SearchViewModel(
     private var explorePage = 1
     private var lastExploreQuery = ""
 
+    // Cached so each pagination/explore mapping doesn't re-hit
+    // ProfileRepository on every result page. observeCurrentUser() keeps
+    // it in sync with login/logout.
+    @Volatile private var currentUserLogin: String? = null
+
     private val exploreLog = logger.withTag("SearchExplore")
 
     companion object {
@@ -88,6 +93,7 @@ class SearchViewModel(
         _state
             .onStart {
                 if (!hasLoadedInitialData) {
+                    observeCurrentUser()
                     syncSystemState()
 
                     observeInstalledApps()
@@ -137,6 +143,28 @@ class SearchViewModel(
         viewModelScope.launch {
             tweaksRepository.getHideSeenEnabled().collect { enabled ->
                 _state.update { it.copy(isHideSeenEnabled = enabled) }
+            }
+        }
+    }
+
+    private fun observeCurrentUser() {
+        viewModelScope.launch {
+            profileRepository.getUser().collect { user ->
+                currentUserLogin = user?.username
+                val login = user?.username
+                _state.update { current ->
+                    current.copy(
+                        repositories =
+                            current.repositories
+                                .map { repo ->
+                                    repo.copy(
+                                        isCurrentUserOwner =
+                                            login != null &&
+                                                repo.repository.owner.login.equals(login, ignoreCase = true),
+                                    )
+                                }.toImmutableList(),
+                    )
+                }
             }
         }
     }
@@ -351,7 +379,7 @@ class SearchViewModel(
                             currentPage = paginatedRepos.nextPageIndex
 
                             val seenIds = _state.value.seenRepoIds
-                            val currentLogin = profileRepository.getUser().first()?.username
+                            val currentLogin = currentUserLogin
 
                             val newReposWithStatus =
                                 paginatedRepos.repos.map { repo ->
@@ -778,7 +806,7 @@ class SearchViewModel(
         val favoritesMap = favouritesRepository.getAllFavorites().first().associateBy { it.repoId }
         val starredMap = starredRepository.getAllStarred().first().associateBy { it.repoId }
         val seenIds = _state.value.seenRepoIds
-        val currentLogin = profileRepository.getUser().first()?.username
+        val currentLogin = currentUserLogin
 
         val existingIds = _state.value.repositories.map { it.repository.id }.toSet()
 
