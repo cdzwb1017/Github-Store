@@ -564,8 +564,8 @@
     <string name="import_apps_title">アプリをインポート</string>
     <string name="import_apps_description">エクスポートしたJSONを貼り付けて追跡中のアプリを復元</string>
     <string name="import_apps_hint">エクスポートしたJSONをここに貼り付け…</string>
-    <string name="include_pre_releases_title">プレリリースを含める</string>
-    <string name="include_pre_releases_description">アップデート確認時にプレリリース版を追跡します。無効の場合、安定版リリースのみが対象となります。</string>
+    <string name="include_pre_releases_title">デフォルトのベータチャンネル</string>
+    <string name="include_pre_releases_description">新しく追跡したアプリはデフォルトでベータビルドを含みます。既に追跡中のアプリは独自の設定を保持します（アプリの詳細画面で変更可能）。</string>
     <string name="confirm_uninstall_title">アプリをアンインストールしますか？</string>
     <string name="confirm_uninstall_message">%1$sをアンインストールしてよろしいですか？この操作は元に戻せず、アプリのデータが失われる可能性があります。</string>
     <string name="invalid_github_url">無効なGitHub URL。形式を使用してください：github.com/owner/repo</string>
@@ -731,6 +731,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">ベータを含む</string>
     <string name="channel_chip_stable_only">安定版のみ</string>
+    <string name="channel_chip_coachmark_title">リリースチャンネルを選択</string>
+    <string name="channel_chip_coachmark_body">このアプリの安定版とベータビルドを切り替えるにはタップ。</string>
+    <string name="channel_chip_coachmark_dismiss">了解</string>
     <string name="channel_toggle_cd">このアプリのベータリリースを切り替え</string>
     <string name="action_switch_to_stable">%1$s の安定版に切り替え</string>
     <string name="stalled_project_warning_months">%1$d か月間、安定版リリースなし</string>

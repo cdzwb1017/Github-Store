@@ -114,6 +114,16 @@ interface TweaksRepository {
     suspend fun setApkInspectCoachmarkShown(shown: Boolean)
 
     /**
+     * One-shot flag for the release-channel coachmark on the Details
+     * screen. Survey signal — users don't realise the per-app channel
+     * chip toggles betas. `false` until shown at least once; permanent
+     * `true` after dismissal.
+     */
+    fun getChannelChipCoachmarkShown(): Flow<Boolean>
+
+    suspend fun setChannelChipCoachmarkShown(shown: Boolean)
+
+    /**
      * One-shot watermark for the battery-optimization prompt on
      * aggressive-OEM ROMs (Oppo / OnePlus / Realme / Xiaomi / vivo /
      * Honor). `false` until the user has either granted the exemption

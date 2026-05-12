@@ -601,8 +601,8 @@
     <string name="import_apps_title">Importa app</string>
     <string name="import_apps_description">Incolla il JSON esportato per ripristinare le app monitorate</string>
     <string name="import_apps_hint">Incolla il JSON esportato qui…</string>
-    <string name="include_pre_releases_title">Includi pre-release</string>
-    <string name="include_pre_releases_description">Monitora le versioni pre-release durante il controllo aggiornamenti. Se disabilitato, vengono considerate solo le versioni stabili.</string>
+    <string name="include_pre_releases_title">Canale beta predefinito</string>
+    <string name="include_pre_releases_description">Le app appena tracciate includono build beta per impostazione predefinita. Le app già tracciate mantengono il proprio canale (modificalo nella schermata Dettagli).</string>
     <string name="confirm_uninstall_title">Disinstallare l'app?</string>
     <string name="confirm_uninstall_message">Sei sicuro di voler disinstallare %1$s? Questa azione non può essere annullata e i dati dell'app potrebbero andare persi.</string>
     <string name="invalid_github_url">URL GitHub non valido. Usa il formato: github.com/owner/repo</string>
@@ -771,6 +771,9 @@
          ═══════════════════════════════════════════════════════════════ -->
     <string name="channel_chip_include_betas">Includi beta</string>
     <string name="channel_chip_stable_only">Solo stabile</string>
+    <string name="channel_chip_coachmark_title">Scegli il canale di rilascio</string>
+    <string name="channel_chip_coachmark_body">Tocca per passare tra rilasci stabili e build beta per questa app.</string>
+    <string name="channel_chip_coachmark_dismiss">Ho capito</string>
     <string name="channel_toggle_cd">Attiva/disattiva le versioni beta per questa app</string>
     <string name="action_switch_to_stable">Passa a %1$s stabile</string>
     <string name="stalled_project_warning_months">Nessuna versione stabile da %1$d mesi</string>

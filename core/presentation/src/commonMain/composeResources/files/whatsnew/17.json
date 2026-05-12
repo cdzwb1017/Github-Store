@@ -28,7 +28,8 @@
       "type": "IMPROVED",
       "bullets": [
         "More reliable background updates on Oppo, OnePlus, Realme, Xiaomi, vivo, and Honor — Tweaks now offers a one-tap battery-optimization shortcut and update workers run with expedited priority.",
-        "Dhizuku silent install on Android 14+ — the app now retries automatically without installer attribution when the system would otherwise demand a confirmation tap."
+        "Dhizuku silent install on Android 14+ — the app now retries automatically without installer attribution when the system would otherwise demand a confirmation tap.",
+        "First-time coachmark on the per-app release-channel chip — explains how to switch between stable and beta builds, surfaces the toggle users were missing."
       ]
     }
   ]
