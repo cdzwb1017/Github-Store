@@ -85,6 +85,21 @@ Kotlin 2.3.10, Compose Multiplatform 1.10.3, Ktor 3.4.0, Room 2.8.4, Koin 4.1.1,
 - **Windows installer signing (SignPath Foundation):** CI workflow `.github/workflows/build-desktop-platforms.yml` job `sign-windows` after every push to `generate-installers` branch. Action pinned to commit SHA (not `@v2`). Secrets: `SIGNPATH_API_TOKEN`, `SIGNPATH_ORGANIZATION_ID` (`1ecf111e-...`). Variable `SIGNPATH_SIGNING_POLICY_SLUG` = `test-signing` until prod cert issued; flip to `release-signing`. Project slug `GitHub-Store`, artifact config slug `initial`. Unsigned artifact deleted post-sign; only `windows-installers-signed` reaches the draft release.
 - **Gradle:** Config + build cache enabled. 4GB Gradle heap, 3GB Kotlin daemon. Official Kotlin style.
 
+## Active skills (apply on matching domain)
+
+- **caveman** — session default, terse output.
+- **karpathy-guidelines** — anti-overcomplication, minimal diffs, surface assumptions, verifiable success criteria. Every coding task.
+- **one-skill-to-rule-them-all** — watch for skill-capture opportunities during multi-step work.
+- **android-* skills** (`~/.claude/skills/android/`) — auto-fire by description match; apply when in matching domain:
+  - `android-compose-ui` — composables, recomposition, animations, modifiers, design system
+  - `android-data-layer` — repos, DTOs, Room, Ktor, mappers
+  - `android-di-koin` — Koin module setup, ViewModel injection
+  - `android-error-handling` — Result wrapper, typed errors
+  - `android-module-structure` — feature-layered modules, convention plugins
+  - `android-navigation` — type-safe Compose nav
+  - `android-presentation-mvi` — State/Action/Event, Root/Screen split, UiText, SavedStateHandle
+  - `android-testing` — testing patterns
+
 ## Conventions
 
 - Packages `zed.rainxch.{module}.{layer}`
