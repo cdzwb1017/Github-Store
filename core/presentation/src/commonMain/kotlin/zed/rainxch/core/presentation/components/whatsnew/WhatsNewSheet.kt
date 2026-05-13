@@ -67,14 +67,6 @@ fun WhatsNewSheet(
             }
 
             item {
-                Text(
-                    text = stringResource(Res.string.whats_new_translations_note),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-
-            item {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
