@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "Homebrew দিয়ে macOS-এ ইনস্টল করুন — আমাদের নতুন tap থেকে `brew install --cask github-store`।"
+        "Homebrew দিয়ে macOS-এ ইনস্টল করুন — আমাদের নতুন tap থেকে `brew install --cask github-store`।",
+        "দুটি নতুন কমিউনিটি মিরর — fastgit.cc এবং fastly.jsdelivr.net। GitHub সীমাবদ্ধ থাকলে কাজে আসে।"
       ]
     },
     {

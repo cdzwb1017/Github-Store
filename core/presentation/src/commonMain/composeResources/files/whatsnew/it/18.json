@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "Installazione macOS con Homebrew — `brew install --cask github-store` dal nostro nuovo tap."
+        "Installazione macOS con Homebrew — `brew install --cask github-store` dal nostro nuovo tap.",
+        "Due nuovi mirror della community — fastgit.cc e fastly.jsdelivr.net. Utili quando GitHub è limitato."
       ]
     },
     {

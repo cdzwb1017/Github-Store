@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "Homebrew で macOS にインストール — 新しい tap から `brew install --cask github-store`。"
+        "Homebrew で macOS にインストール — 新しい tap から `brew install --cask github-store`。",
+        "コミュニティミラー 2 件追加 — fastgit.cc と fastly.jsdelivr.net。GitHub が制限されたときに便利。"
       ]
     },
     {

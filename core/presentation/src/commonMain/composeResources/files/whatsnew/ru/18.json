@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "Установка на macOS через Homebrew — `brew install --cask github-store` из нашего нового tap."
+        "Установка на macOS через Homebrew — `brew install --cask github-store` из нашего нового tap.",
+        "Два новых зеркала сообщества — fastgit.cc и fastly.jsdelivr.net. Полезны, когда GitHub ограничен."
       ]
     },
     {

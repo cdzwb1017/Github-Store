@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "macOS'ta Homebrew ile kurulum — yeni tap'imizden `brew install --cask github-store`."
+        "macOS'ta Homebrew ile kurulum — yeni tap'imizden `brew install --cask github-store`.",
+        "İki yeni topluluk yansısı — fastgit.cc ve fastly.jsdelivr.net. GitHub kısıtlandığında işe yarar."
       ]
     },
     {

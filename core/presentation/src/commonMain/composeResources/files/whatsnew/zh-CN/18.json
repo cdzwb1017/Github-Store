@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "通过 Homebrew 在 macOS 上安装 — 从我们的新 tap 运行 `brew install --cask github-store`。"
+        "通过 Homebrew 在 macOS 上安装 — 从我们的新 tap 运行 `brew install --cask github-store`。",
+        "新增两个社区镜像 — fastgit.cc 和 fastly.jsdelivr.net。GitHub 受限时很有用。"
       ]
     },
     {

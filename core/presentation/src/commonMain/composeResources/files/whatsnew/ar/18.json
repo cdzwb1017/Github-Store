@@ -7,7 +7,8 @@
     {
       "type": "NEW",
       "bullets": [
-        "التثبيت على macOS عبر Homebrew — `brew install --cask github-store` من المستودع الجديد."
+        "التثبيت على macOS عبر Homebrew — `brew install --cask github-store` من المستودع الجديد.",
+        "مرآتان مجتمعيتان جديدتان — fastgit.cc و fastly.jsdelivr.net. مفيدة عند تقييد GitHub."
       ]
     },
     {
