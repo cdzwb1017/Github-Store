@@ -64,9 +64,11 @@ fun BottomNavigation(
     hasUnreadAnnouncements: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
-    if (currentScreen !in BottomNavigationUtils.allowedScreens().map { it.screen }) return
+    val allowedScreens = BottomNavigationUtils.allowedScreens()
+    if (allowedScreens.none { it.screen::class == currentScreen::class }) return
 
-    val selectedIndex = BottomNavigationUtils.allowedScreens().indexOfFirst { it.screen == currentScreen }
+    val selectedIndex =
+        allowedScreens.indexOfFirst { it.screen::class == currentScreen::class }
 
     val itemPositions = remember { mutableMapOf<Int, Pair<Float, Float>>() }
 
@@ -240,7 +242,7 @@ fun BottomNavigation(
                         hasBadge =
                             (item.screen == GithubStoreGraph.AppsScreen && isUpdateAvailable) ||
                                 (item.screen == GithubStoreGraph.ProfileScreen && hasUnreadAnnouncements),
-                        isSelected = item.screen == currentScreen,
+                        isSelected = item.screen::class == currentScreen::class,
                         onSelect = { onNavigate(item.screen) },
                         onPositioned = { x, width ->
                             itemPositions[index] = x to width
