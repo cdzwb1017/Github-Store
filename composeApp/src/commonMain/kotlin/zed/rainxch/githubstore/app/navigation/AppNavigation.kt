@@ -114,6 +114,13 @@ fun AppNavigation(
 
                 composable<GithubStoreGraph.SearchScreen> { backStackEntry ->
                     val args = backStackEntry.toRoute<GithubStoreGraph.SearchScreen>()
+                    val initialPlatform =
+                        args.initialPlatform?.let { name ->
+                            runCatching {
+                                zed.rainxch.search.presentation.model.SearchPlatformUi
+                                    .valueOf(name)
+                            }.getOrNull()
+                        }
                     SearchRoot(
                         onNavigateBack = {
                             navController.navigateUp()
@@ -142,7 +149,7 @@ fun AppNavigation(
                         },
                         viewModel =
                             koinViewModel {
-                                parametersOf(args.initialPlatform)
+                                parametersOf(initialPlatform)
                             },
                     )
                 }
@@ -170,7 +177,7 @@ fun AppNavigation(
                         onNavigateToSearchByPlatform = { platform ->
                             navController.navigate(
                                 GithubStoreGraph.SearchScreen(
-                                    initialPlatform = platform.toSearchPlatformUi(),
+                                    initialPlatform = platform.toSearchPlatformUi().name,
                                 ),
                             )
                         },

@@ -1,7 +1,6 @@
 package zed.rainxch.githubstore.app.navigation
 
 import kotlinx.serialization.Serializable
-import zed.rainxch.search.presentation.model.SearchPlatformUi
 
 @Serializable
 sealed interface GithubStoreGraph {
@@ -10,7 +9,12 @@ sealed interface GithubStoreGraph {
 
     @Serializable
     data class SearchScreen(
-        val initialPlatform: SearchPlatformUi? = null,
+        // String over enum: Compose Navigation's Desktop (`nonAndroid.kt`)
+        // serializer needs an explicit NavType for non-primitive nav args,
+        // which enums don't have out of the box. Enum-as-name string keeps
+        // the contract type-safe at the caller / VM boundary while letting
+        // the route serialize on every target with no typeMap.
+        val initialPlatform: String? = null,
     ) : GithubStoreGraph
 
     @Serializable
