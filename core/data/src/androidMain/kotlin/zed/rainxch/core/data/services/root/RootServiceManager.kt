@@ -272,11 +272,24 @@ class RootServiceManager(
      * probe on modern Android.
      */
     private fun locateSuBinary(): SuProbe? {
+        // A device can have multiple su binaries — e.g. a ROM-baked
+        // `/system/bin/su` that's denied alongside a Magisk install at
+        // `/data/adb/magisk/su` that would grant. Always scan all paths;
+        // prefer a confirmed UID_ZERO over a NOT_ZERO so the first denied
+        // candidate doesn't shadow a working one. Fall back to the first
+        // NOT_ZERO so the grant-prompt path still surfaces when none of
+        // the binaries is currently granted.
+        var firstNotZero: SuProbe? = null
         for (path in SU_PATHS) {
             val result = probeSu(path) ?: continue
-            return SuProbe(path = path, kind = result)
+            if (result == ProbeResultKind.UID_ZERO) {
+                return SuProbe(path = path, kind = result)
+            }
+            if (firstNotZero == null) {
+                firstNotZero = SuProbe(path = path, kind = result)
+            }
         }
-        return null
+        return firstNotZero
     }
 
     private fun probeSu(path: String): ProbeResultKind? =
