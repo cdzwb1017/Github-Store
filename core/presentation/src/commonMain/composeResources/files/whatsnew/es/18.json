@@ -20,7 +20,8 @@
         "El botón de búsqueda del teclado ahora activa la búsqueda en Android 12 con IMEs chinos.",
         "El repo enlazado externamente muestra ahora un banner en Detalles con un toque para desvincular.",
         "El inicio de sesión abre la URL con el código ya rellenado y copia un código compatible con pegado.",
-        "Crash en Android 16 / ROMs personalizadas en Ajustes y descargas — usa almacenamiento interno cuando el externo está bloqueado."
+        "Crash en Android 16 / ROMs personalizadas en Ajustes y descargas — usa almacenamiento interno cuando el externo está bloqueado.",
+        "Detección de Magisk / KernelSU / APatch en Android 13+ — la prueba anterior la ocultaba SELinux."
       ]
     }
   ]
